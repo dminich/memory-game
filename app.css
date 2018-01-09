@@ -1,0 +1,356 @@
+html {
+     box-sizing: border-box;
+}
+ *, *::before, *::after {
+     box-sizing: inherit;
+}
+ html, body {
+     width: 100%;
+     height: 100%;
+     margin: 0;
+     padding: 0;
+}
+ body {
+     background: #ffffff url('../img/geometry2.png');
+    /* Background pattern from Subtle Patterns */
+     font-family: 'Coda', cursive;
+}
+ .container {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     flex-direction: column;
+}
+ h1 {
+     font-family: 'Open Sans', sans-serif;
+     font-weight: 300;
+}
+/*Styles for the deck of cards*/
+ .deck {
+     width: 660px;
+     min-height: 680px;
+     background: linear-gradient(160deg, #02ccba 0%, #aa7ecd 100%);
+     padding: 32px;
+     border-radius: 10px;
+     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-between;
+     align-items: center;
+     margin: 0 0 3em;
+     list-style: none;
+}
+ .deck .card {
+     height: 125px;
+     width: 125px;
+     background: #2e3d49;
+     font-size: 0;
+     color: #ffffff;
+     border-radius: 8px;
+     cursor: pointer;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+}
+ .deck .card.open {
+     transform: rotateY(0);
+     background: #02b3e4;
+     cursor: default;
+}
+ .deck .card.show {
+     font-size: 33px;
+}
+ .deck .card.match {
+     cursor: default;
+     background: #02ccba;
+     font-size: 33px;
+}
+/*Animation for cards*/
+ .flipInY {
+     -webkit-backface-visibility: visible !important;
+     backface-visibility: visible !important;
+     -webkit-animation-name: flipInY;
+     animation-name: flipInY;
+     -webkit-animation-duration: 1s;
+     animation-duration: 1s;
+     -webkit-animation-fill-mode: both;
+     animation-fill-mode: both;
+}
+ @-webkit-keyframes flipInY {
+     0% {
+         -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+         transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+         -webkit-transition-timing-function: ease-in;
+         transition-timing-function: ease-in;
+         opacity: 0;
+    }
+     40% {
+         -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+         transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+         -webkit-transition-timing-function: ease-in;
+         transition-timing-function: ease-in;
+    }
+     60% {
+         -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+         transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+         opacity: 1;
+    }
+     80% {
+         -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+         transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+    }
+     100% {
+         -webkit-transform: perspective(400px);
+         transform: perspective(400px);
+    }
+}
+ @keyframes flipInY {
+     0% {
+         -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+         transform: perspective(400px) rotate3d(0, 1, 0, 90deg);
+         -webkit-transition-timing-function: ease-in;
+         transition-timing-function: ease-in;
+         opacity: 0;
+    }
+     40% {
+         -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+         transform: perspective(400px) rotate3d(0, 1, 0, -20deg);
+         -webkit-transition-timing-function: ease-in;
+         transition-timing-function: ease-in;
+    }
+     60% {
+         -webkit-transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+         transform: perspective(400px) rotate3d(0, 1, 0, 10deg);
+         opacity: 1;
+    }
+     80% {
+         -webkit-transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+         transform: perspective(400px) rotate3d(0, 1, 0, -5deg);
+    }
+     100% {
+         -webkit-transform: perspective(400px);
+         transform: perspective(400px);
+    }
+}
+/* Wobble when wrong*/
+ .deck .card.wobble {
+     -webkit-animation-name: wobble;
+     animation-name: wobble;
+     -webkit-animation-duration: 1s;
+     animation-duration: 1s;
+     -webkit-animation-fill-mode: both;
+     animation-fill-mode: both;
+}
+ @-webkit-keyframes wobble {
+     0% {
+         -webkit-transform: none;
+         transform: none;
+    }
+     15% {
+         -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+         transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+    }
+     30% {
+         -webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+         transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+    }
+     45% {
+         -webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+         transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+    }
+     60% {
+         -webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+         transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+    }
+     75% {
+         -webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+         transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+    }
+     100% {
+         -webkit-transform: none;
+         transform: none;
+    }
+}
+ @keyframes wobble {
+     0% {
+         -webkit-transform: none;
+         transform: none;
+    }
+     15% {
+         -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+         transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+    }
+     30% {
+         -webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+         transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+    }
+     45% {
+         -webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+         transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+    }
+     60% {
+         -webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+         transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+    }
+     75% {
+         -webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+         transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+    }
+     100% {
+         -webkit-transform: none;
+         transform: none;
+    }
+}
+/*When match is right */
+ .deck .card.flash {
+     -webkit-animation-name: flash;
+     animation-name: flash;
+     -webkit-animation-duration: 1s;
+     animation-duration: 1s;
+     -webkit-animation-fill-mode: both;
+     animation-fill-mode: both;
+}
+ @-webkit-keyframes flash {
+     0%, 50%, 100% {
+         opacity: 1;
+    }
+     25%, 75% {
+         opacity: 0;
+    }
+}
+ @keyframes flash {
+     0%, 50%, 100% {
+         opacity: 1;
+    }
+     25%, 75% {
+         opacity: 0;
+    }
+}
+/*Styles for the Score Panel*/
+ .score-panel {
+     text-align: left;
+     width: 345px;
+     margin-bottom: 10px;
+}
+ .score-panel .stars {
+     margin: 0;
+     padding: 0;
+     color: #e6e600;
+     display: inline-block;
+     margin: 0 5px 0 0;
+}
+ .score-panel .stars li {
+     list-style: none;
+     display: inline-block;
+}
+ .score-panel .restart {
+     float: right;
+     cursor: pointer;
+}
+ .score-panel .restart:hover {
+     color: #00b8e6;
+}
+ #timer {
+     display: inline-block;
+     padding-left: 50px;
+}
+/* Modal message*/
+ .modal {
+     display: none;
+    /* Hidden by default */
+     position: fixed;
+    /* Stay in place */
+     z-index: 1;
+    /* Sit on top */
+     padding-top: 180px;
+    /* Location of the box */
+     margin: 0 auto;
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     overflow: auto;
+     background-color: rgb(0, 0, 0);
+     background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+ .message-content {
+     background-color: white;
+     margin: 0 auto;
+     height: 70%;
+     width: 50%;
+     padding: 0px;
+     text-align: center;
+}
+ .message-content h1 {
+     font-size: 3em;
+     padding-top: 2em;
+     color: #18bf8f;
+     font-family: 'PT Serif', serif;
+}
+ .message-content h3 {
+     font-weight: normal;
+     color: #4f4f4f;
+}
+ #play-again-btn {
+     background-color: #4100cc;
+     color: white;
+     font-size: 16px;
+     padding: 10px 25px;
+     border: 2px solid #4100cc;
+     border-radius: 10px;
+     margin-top: 15px;
+}
+ #play-again-btn:hover {
+     background-color: white;
+     color: #4f4f4f;
+     font-weight: bold;
+     border: 2px solid #4100cc;
+     cursor: pointer;
+}
+/* The Close Button */
+ .close {
+     color: white;
+     float: right;
+     font-size: 40px;
+     font-weight: bold;
+     border-radius: 40px;
+     background: #18bf8f;
+     padding: 0px 15px 0px;
+     margin-right: 15px;
+     margin-top: 10px;
+}
+ .close:hover {
+     color: #000;
+     cursor: pointer;
+}
+ @media only screen and (max-width: 770px){
+     .deck{
+         width: 550px;
+         height: 500px;
+    }
+     .deck .card {
+         height: 110px;
+         width: 110px;
+    }
+     .message-content{
+         width: 70%;
+         height: 70%;
+    }
+}
+ @media only screen and (max-width: 549px){
+     .deck{
+         width: 450px;
+         height: 500px;
+    }
+     .deck .card {
+         height: 110px;
+         width: 90px;
+    }
+     .message-content{
+         width: 80%;
+         height: 80%;
+    }
+}
+ 
